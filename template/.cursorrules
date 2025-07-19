@@ -1,0 +1,118 @@
+# Cursor AI Rules for Cursor Project Starter
+
+## Project Overview
+This is a Next.js 14 project with shadcn/ui components, TypeScript, and TweakCN optimization.
+Focus on modern React patterns, performance, and maintainable code.
+
+## Code Style & Patterns
+
+### React Components
+- Use functional components with hooks
+- Prefer TypeScript for all components
+- Use proper prop typing with interfaces
+- Implement proper error boundaries
+- Use React.memo for expensive components
+
+### shadcn/ui Integration
+- Import components from "@/components/ui/"
+- Use the cn() utility for conditional classes
+- Follow shadcn/ui patterns for variants
+- Extend components rather than modifying them
+- Use class-variance-authority for component variants
+
+### Styling
+- Use Tailwind CSS classes
+- Prefer utility classes over custom CSS
+- Use the cn() utility for conditional styling
+- Follow mobile-first responsive design
+- Use CSS variables for theming
+
+### Performance
+- Use Next.js Image component for images
+- Implement proper loading states
+- Use React.lazy for code splitting
+- Optimize bundle size with TweakCN
+- Use proper caching strategies
+
+### TypeScript
+- Use strict mode
+- Define proper interfaces for all data
+- Use type guards for runtime type checking
+- Prefer const assertions for static data
+- Use utility types when appropriate
+
+### File Organization
+- Components in /components/ui/ (shadcn/ui) or /components/custom/ (business logic)
+- Utilities in /lib/
+- Types in /types/ or co-located with components
+- API routes in /app/api/
+- Pages in /app/ following Next.js 13+ conventions
+
+### Error Handling
+- Use try-catch blocks for async operations
+- Implement proper error boundaries
+- Provide meaningful error messages
+- Log errors appropriately
+- Handle loading and error states in UI
+
+### Testing
+- Write unit tests for utilities
+- Test component behavior, not implementation
+- Use proper test data and mocks
+- Test error scenarios
+- Maintain good test coverage
+
+## Common Patterns
+
+### Component Structure
+```typescript
+interface ComponentProps {
+  // Define props
+}
+
+export function Component({ prop1, prop2 }: ComponentProps) {
+  // Component logic
+  return (
+    // JSX
+  )
+}
+```
+
+### Conditional Styling
+```typescript
+import { cn } from "@/lib/utils"
+
+const className = cn(
+  "base-classes",
+  condition && "conditional-classes",
+  variant === "primary" && "primary-classes"
+)
+```
+
+### Error Boundaries
+```typescript
+class ErrorBoundary extends React.Component {
+  // Implementation
+}
+```
+
+## Performance Guidelines
+- Use React.memo for expensive components
+- Implement proper loading states
+- Use Next.js optimization features
+- Monitor bundle size with TweakCN
+- Use proper caching strategies
+
+## Security Considerations
+- Validate all user inputs
+- Use proper authentication
+- Implement CSRF protection
+- Sanitize data before rendering
+- Use environment variables for secrets
+
+## Documentation
+- Document complex logic
+- Add JSDoc comments for functions
+- Update README.md with new features
+- Create ADRs for major decisions
+- Maintain session notes for learnings 
