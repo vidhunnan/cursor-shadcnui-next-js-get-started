@@ -1,17 +1,29 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable experimental features for better performance
   experimental: {
-    appDir: true,
+    optimizeCss: true,
+    optimizePackageImports: ['@radix-ui/react-icons'],
   },
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      // Use optimized CSS in production
-      const path = require('path');
-      config.resolve.alias['@/styles/globals.css'] = path.resolve(
-        __dirname,
-        './app/globals.optimized.css'
-      );
+  
+  // Optimize images
+  images: {
+    formats: ['image/webp', 'image/avif'],
+  },
+  
+  // Enable compression
+  compress: true,
+  
+  // Bundle analyzer configuration
+  webpack: (config, { isServer }) => {
+    // Bundle analyzer
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
     }
+    
     return config;
   },
 }

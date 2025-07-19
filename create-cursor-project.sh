@@ -85,9 +85,9 @@ cat > components.json << EOF
 }
 EOF
 
-# Install shadcn/ui dependencies and TweakCN
+# Install shadcn/ui dependencies
 npm install clsx tailwind-merge class-variance-authority
-npm install --save-dev tweakcn
+npm install --save-dev @next/bundle-analyzer
 
 # Create lib directory and utils
 mkdir -p lib
@@ -165,40 +165,13 @@ EOF
 
 echo -e "${GREEN}✅ UI components added${NC}"
 
-# Setup TweakCN for Tailwind optimization
-echo -e "${BLUE}⚡ Setting up TweakCN for Tailwind optimization...${NC}"
-
-# Create tweakcn configuration
-cat > tweakcn.config.json << 'EOF'
-{
-  "include": [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./lib/**/*.{js,ts,jsx,tsx}"
-  ],
-  "exclude": [
-    "./node_modules/**",
-    "./.next/**",
-    "./dist/**"
-  ],
-  "tailwindConfig": "./tailwind.config.ts",
-  "output": {
-    "css": "./app/globals.optimized.css",
-    "report": "./tweakcn-report.json"
-  },
-  "options": {
-    "preserveImportant": true,
-    "preserveKeyframes": true,
-    "preserveVariables": true,
-    "minify": true
-  }
-}
-EOF
+# Setup bundle analyzer for optimization insights
+echo -e "${BLUE}⚡ Setting up bundle analyzer for optimization insights...${NC}"
 
 # Update package.json scripts
-npm pkg set scripts.analyze="tweakcn analyze"
-npm pkg set scripts.optimize="tweakcn optimize"
-npm pkg set scripts.build="tweakcn optimize && next build"
+npm pkg set scripts.analyze="npx @next/bundle-analyzer"
+npm pkg set scripts.optimize="npm run build"
+npm pkg set scripts.build="next build"
 npm pkg set scripts.dev="next dev"
 npm pkg set scripts.start="next start"
 npm pkg set scripts.lint="next lint"
@@ -206,7 +179,7 @@ npm pkg set scripts.type-check="tsc --noEmit"
 npm pkg set scripts.format="prettier --write ."
 npm pkg set scripts.clean="rm -rf .next node_modules"
 
-echo -e "${GREEN}✅ TweakCN configured${NC}"
+echo -e "${GREEN}✅ Bundle analyzer configured${NC}"
 
 # Create knowledge base scripts
 mkdir -p scripts
@@ -298,7 +271,7 @@ cat > .cursorrules << 'EOF'
 # Cursor AI Rules for Cursor Project Starter
 
 ## Project Overview
-This is a Next.js 14 project with shadcn/ui components, TypeScript, and TweakCN optimization.
+This is a Next.js 14 project with shadcn/ui components, TypeScript, and performance optimization.
 Focus on modern React patterns, performance, and maintainable code.
 
 ## Code Style & Patterns
@@ -324,7 +297,7 @@ Focus on modern React patterns, performance, and maintainable code.
 - Use React.memo for expensive components
 - Implement proper loading states
 - Use Next.js optimization features
-- Monitor bundle size with TweakCN
+- Monitor bundle size with bundle analyzer
 - Use proper caching strategies
 
 ## Documentation
@@ -366,7 +339,7 @@ npm run dev
 - **TypeScript** - Type safety and better DX
 - **Tailwind CSS** - Utility-first CSS framework
 - **shadcn/ui** - High-quality React components
-- **TweakCN** - Tailwind CSS optimization (90%+ size reduction)
+- **Bundle Analyzer** - Performance monitoring and optimization insights
 - **Knowledge Base System** - Documentation and insight capture
 
 ### Project Structure
@@ -385,14 +358,14 @@ my-project/
 │   ├── development-notes/
 │   ├── decisions/
 │   ├── session-notes/
-│   └── tweakcn-guide.md  # TweakCN optimization guide
+│   └── performance-guide.md  # Performance optimization guide
 ├── scripts/              # Development scripts
 │   ├── new-session.sh
 │   └── end-session.sh
 ├── public/               # Static assets
 ├── .cursorrules         # Cursor AI rules
 ├── components.json      # shadcn/ui config
-├── tweakcn.config.json  # TweakCN optimization config
+├── next.config.js       # Next.js configuration
 ├── tailwind.config.ts   # Tailwind configuration
 ├── tsconfig.json        # TypeScript config
 └── package.json         # Dependencies
@@ -568,18 +541,18 @@ npm run build
 ```json
 {
   "dev": "next dev",
-  "build": "tweakcn optimize && next build",
+  "build": "next build",
   "start": "next start",
   "lint": "next lint",
   "type-check": "tsc --noEmit",
   "format": "prettier --write .",
   "clean": "rm -rf .next node_modules",
-  "analyze": "tweakcn analyze",
-  "optimize": "tweakcn optimize"
+  "analyze": "npx @next/bundle-analyzer",
+"optimize": "npm run build"
 }
 ```
 
-### TweakCN Commands
+### Performance Commands
 - **Analyze CSS usage**: `npm run analyze` - See which Tailwind classes are used/unused
 - **Optimize CSS**: `npm run optimize` - Create optimized CSS file for production
 - **Auto-optimization**: `npm run build` - Automatically optimizes before building
@@ -653,8 +626,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# TweakCN
-tweakcn-report.json
+# Bundle analyzer
+.next/analyze/
 app/globals.optimized.css
 
 # IDE

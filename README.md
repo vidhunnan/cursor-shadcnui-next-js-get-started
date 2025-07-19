@@ -14,7 +14,7 @@ A comprehensive starter template for Cursor AI projects with Next.js, shadcn/ui,
 ## ✨ Features
 
 - **🎨 Modern UI Stack**: Next.js 14, TypeScript, Tailwind CSS, shadcn/ui
-- **⚡ Performance Optimized**: TweakCN for 90%+ CSS size reduction
+- **⚡ Performance Optimized**: Bundle analyzer and Tailwind CSS optimization
 - **🤖 AI-Powered**: Cursor AI rules and best practices built-in
 - **📚 Knowledge Management**: Session-based development workflow
 - **🚀 One-Command Setup**: Interactive project creation
@@ -38,7 +38,7 @@ cd cursor-shadcnui-next-js-get-started
 - **TypeScript** - Type safety and better DX
 - **Tailwind CSS** - Utility-first CSS framework
 - **shadcn/ui** - High-quality React components
-- **TweakCN** - Tailwind CSS optimization (90%+ size reduction)
+- **Bundle Analyzer** - Performance monitoring and optimization insights
 - **Knowledge Base System** - Documentation and insight capture
 
 ### Project Structure
@@ -51,7 +51,7 @@ my-project/
 ├── scripts/              # Development scripts
 ├── .cursorrules         # Cursor AI rules
 ├── components.json      # shadcn/ui config
-├── tweakcn.config.json  # TweakCN optimization config
+├── next.config.js       # Next.js configuration
 └── ...                  # All necessary configs
 ```
 
@@ -134,17 +134,17 @@ export default function Example() {
 
 ## ⚡ Performance Optimization
 
-### TweakCN Integration
-- **CSS Size**: 3.8MB → 200-400KB (90%+ reduction)
-- **First Paint**: 1.2s → 600ms (50% faster)
-- **Parse Time**: 300ms → 50ms (83% faster)
+### Performance Optimization
+- **Bundle Analysis**: Monitor and optimize your application bundle
+- **Tailwind CSS**: Utility-first CSS with built-in optimization
+- **Next.js 14**: Automatic code splitting and optimization
 
 ### Usage
 ```bash
-# Analyze CSS usage
+# Analyze bundle size
 npm run analyze
 
-# Build with optimization
+# Build for production
 npm run build
 ```
 
@@ -153,14 +153,14 @@ npm run build
 ```json
 {
   "dev": "next dev",
-  "build": "tweakcn optimize && next build",
+  "build": "next build",
   "start": "next start",
   "lint": "next lint",
   "type-check": "tsc --noEmit",
   "format": "prettier --write .",
   "clean": "rm -rf .next node_modules",
-  "analyze": "tweakcn analyze",
-  "optimize": "tweakcn optimize"
+  "analyze": "npx @next/bundle-analyzer",
+  "optimize": "npm run build"
 }
 ```
 
@@ -199,7 +199,7 @@ npm run build
 For detailed documentation, see the [docs/](./docs/) directory:
 - [Complete Setup Guide](./docs/get-started.md)
 - [Template Structure](./docs/doc.md)
-- [TweakCN Optimization](./docs/tailwind-css-getstarted.md)
+- [Performance Optimization](./docs/get-started.md)
 - [Template Overview](./docs/TEMPLATE_SUMMARY.md)
 
 ## 🤝 Contributing

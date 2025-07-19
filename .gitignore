@@ -79,8 +79,8 @@ jspm_packages/
 # TernJS port file
 .tern-port
 
-# TweakCN
-tweakcn-report.json
+# Bundle analyzer
+.next/analyze/
 app/globals.optimized.css
 
 # TypeScript

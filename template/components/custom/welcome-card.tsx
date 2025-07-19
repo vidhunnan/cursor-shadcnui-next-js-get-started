@@ -45,7 +45,7 @@ export function WelcomeCard() {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-orange-500">⚡</span>
-            <span>Optimized with TweakCN for performance</span>
+            <span>Optimized with Next.js and Tailwind CSS</span>
           </div>
         </div>
 
